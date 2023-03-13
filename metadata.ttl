@@ -1,0 +1,41 @@
+@prefix : <https://riverbench.github.io/dataset/example#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rb: <https://riverbench.github.io/schema/dataset#> .
+@prefix rbt: <https://riverbench.github.io/schema/theme#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:exampleDataset
+    a rb:Dataset, dcat:Dataset ;
+    dcterms:conformsTo <https://riverbench.github.io/schema/dataset/1.0.0> ;
+    dcterms:identifier "example-triples" ;
+
+    dcterms:title "Example triples dataset"@en ;
+    dcterms:description "This is an example dataset that is a triple stream."@en ;
+    dcterms:issued "2023-03-13"^^xsd:date ;
+    dcterms:modified "2023-03-13"^^xsd:date ;
+
+    # License and attribution
+    dcterms:license <http://spdx.org/licenses/CC0-1.0> ;
+    dcterms:creator [
+        foaf:name "Piotr Sowiński" ;
+        foaf:nick "Ostrzyciel" ;
+        foaf:homepage <https://github.com/Ostrzyciel>
+    ] ;
+    
+    # Topics
+    dcat:theme rbt:abstract ;
+
+    # Technical metadata
+    rb:usesOntology <https://name-example/p2> ;
+    rb:hasStreamElementCount 132432 ;
+    rb:hasStreamElementType rb:triples ;
+    rb:hasStreamElementSplit [
+        a rb:TimeStreamElementSplit
+    ] ;
+    
+    # Extra metadata – temporal
+    dcat:temporalResolution "PT1S"^^xsd:duration . # 1 second
