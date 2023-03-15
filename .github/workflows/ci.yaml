@@ -5,6 +5,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch: {}
 
 jobs:
   validate:
@@ -25,5 +26,4 @@ jobs:
           path: schema
 
       - name: "Validate the dataset"
-        # TODO: change to the actual SHACL file
-        run: ci-worker validate-repo dataset schema/src/dataset.ttl
+        run: ci-worker validate-repo dataset schema/src/metadata_shacl.ttl
