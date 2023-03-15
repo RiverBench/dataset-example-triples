@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: "Validate dataset"
+    runs-on: "ubuntu-latest"
+    container: ghcr.io/riverbench/dataset-ci-worker:main
+
+    steps:
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+        with:
+          path: dataset
+
+      - name: "Checkout schema repository"
+        uses: actions/checkout@v3
+        with:
+          repository: 'RiverBench/schema'
+          path: schema
+
+      - name: "Validate the dataset"
+        # TODO: change to the actual SHACL file
+        run: ci-worker validate-repo dataset schema/src/dataset.ttl
