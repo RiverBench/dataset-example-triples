@@ -36,6 +36,11 @@
     rb:hasStreamElementSplit [
         a rb:TimeStreamElementSplit
     ] ;
+    rb:conformsToRdf11 true ;
+    rb:conformsToRdfStarDraft_20211217 true ;
+    rb:usesGeneralizedRdfDatasets false ;
+    rb:usesGeneralizedTriples false ;
+    rb:usesRdfStar false ;
     
     # Extra metadata – temporal
     dcat:temporalResolution "PT1S"^^xsd:duration . # 1 second
