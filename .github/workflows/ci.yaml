@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: dataset
+          lfs: true
 
       - name: "Checkout schema repository"
         uses: actions/checkout@v3
@@ -27,3 +28,21 @@ jobs:
 
       - name: "Validate the dataset"
         run: ci-worker validate-repo dataset schema/src/metadata_shacl.ttl
+
+  package:
+    needs: validate
+    name: "Package dataset"
+    runs-on: "ubuntu-latest"
+    container: ghcr.io/riverbench/dataset-ci-worker:main
+
+    steps:
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+        with:
+          path: dataset
+          lfs: true
+      
+      - name: "Package the dataset"
+        run: |
+          mkdir package_out
+          ci-worker package dataset package_out
