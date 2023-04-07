@@ -36,6 +36,8 @@ jobs:
     name: "Package dataset"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/dataset-ci-worker:main
+    # Force only one package job to execute at a time, to avoid duplicating work.
+    concurrency: package-dataset
     outputs:
       package-key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
 
@@ -74,9 +76,7 @@ jobs:
     name: "Make a pre-release"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/dataset-ci-worker:main
-    permissions:
-      contents: read
-      packages: write
+    permissions: write-all
     steps:
       - name: Restore packaged dataset from cache
         id: cache-dataset-restore
