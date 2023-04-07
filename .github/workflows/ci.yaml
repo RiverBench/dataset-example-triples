@@ -45,10 +45,11 @@ jobs:
           path: dataset
           lfs: true
 
-      - name: Restore cached packaged dataset
+      - name: Check if the packaged dataset is cached
         id: cache-dataset-restore
         uses: actions/cache/restore@v3
         with:
+          lookup-only: true
           path: package_out
           key: cache-package-${{ hashFiles('dataset/metadata.ttl', 'dataset/data/*.tar.gz') }}
       
