@@ -8,6 +8,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  # todo: move to a separate borkflow
   validate:
     name: "Validate dataset"
     runs-on: "ubuntu-latest"
@@ -34,6 +35,8 @@ jobs:
     name: "Package dataset"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/dataset-ci-worker:main
+    outputs:
+      package-key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
 
     steps:
       - name: "Checkout dataset repository"
@@ -41,8 +44,25 @@ jobs:
         with:
           path: dataset
           lfs: true
+
+      - name: Restore cached packaged dataset
+        id: cache-dataset-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: package_out
+          key: cache-package-${{ hashFiles(['dataset/metadata.ttl', 'dataset/data/*.tar.gz']) }}
       
       - name: "Package the dataset"
+        if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
         run: |
           mkdir package_out
           ci-worker package dataset package_out
+
+      - name: Save the packaged dataset in cache
+        id: cache-dataset-save
+        uses: actions/cache/save@v3
+        if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
+        with:
+          path: package_out
+          key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
+        
