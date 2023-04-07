@@ -85,10 +85,15 @@ jobs:
           path: package_out
           key: ${{ needs.package.outputs.package-key }}
 
+      - name: Delete previous latest release
+        uses: dev-drprasad/delete-tag-and-release@v1.0
+        with:
+          tag_name: latest
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload files for the release
         uses: softprops/action-gh-release@v1
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
           tag_name: "latest"
           prerelease: true
           name: "Latest dataset package"
