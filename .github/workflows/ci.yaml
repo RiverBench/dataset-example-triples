@@ -2,9 +2,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  # pull_request:
+  #   branches:
+  #     - main
   workflow_dispatch: {}
 
 jobs:
@@ -51,7 +51,7 @@ jobs:
         with:
           lookup-only: true
           path: package_out
-          key: cache-package-${{ hashFiles('dataset/metadata.ttl', 'dataset/data/*.tar.gz') }}
+          key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset/metadata.ttl', 'dataset/data/*.tar.gz') }}
       
       - name: "Package the dataset"
         if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
@@ -66,4 +66,28 @@ jobs:
         with:
           path: package_out
           key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
+
+  pre-release:
+    # TODO: add if
+    needs: package
+    name: "Make a pre-release"
+    runs-on: "ubuntu-latest"
+    container: ghcr.io/riverbench/dataset-ci-worker:main
+    steps:
+      - name: Restore packaged dataset from cache
+        id: cache-dataset-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: package_out
+          key: ${{ needs.package.outputs.package-key }}
+
+      - name: Upload files for the release
+        uses: "marvinpinto/action-automatic-releases@v1.2.1"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Latest dataset package"
+          files: 'package_out/*'
+
         
