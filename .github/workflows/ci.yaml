@@ -93,7 +93,7 @@ jobs:
       - name: Merge metadata and packages
         run: |
           mkdir release
-          ci-worker dataset package_out release latest
+          ci-worker merge-metadata dataset package_out release latest
           mv package_out/*.gz release
 
       - name: Delete previous latest release
