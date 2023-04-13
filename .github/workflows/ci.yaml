@@ -85,6 +85,17 @@ jobs:
           path: package_out
           key: ${{ needs.package.outputs.package-key }}
 
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+        with:
+          path: dataset
+
+      - name: Merge metadata and packages
+        run: |
+          mkdir release
+          ci-worker dataset package_out release latest
+          mv package_out/*.gz release
+
       - name: Delete previous latest release
         uses: dev-drprasad/delete-tag-and-release@v1.0
         with:
@@ -97,7 +108,7 @@ jobs:
           tag_name: "latest"
           prerelease: true
           name: "Latest dataset package"
-          files: 'package_out/*'
+          files: 'release/*'
           fail_on_unmatched_files: true
           generate_release_notes: true
 
