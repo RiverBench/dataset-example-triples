@@ -103,6 +103,12 @@ jobs:
           ci-worker merge-metadata dataset package_out release latest
           mv package_out/*.gz release
 
+      - name: Delete previous latest release
+        uses: dev-drprasad/delete-tag-and-release@v1.0
+        with:
+          tag_name: latest
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload files for the release
         uses: ncipollo/release-action@v1.12.0
         with:
@@ -111,9 +117,7 @@ jobs:
           tag: "latest"
           name: "Latest dataset package"
           artifacts: 'release/*'
-          removeArtifacts: true
           generateReleaseNotes: true
-          allowUpdates: true
 
   # TODO: add tagged releases
 
