@@ -42,11 +42,11 @@ jobs:
       package-key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
 
     steps:
-      - name: "Checkout dataset repository"
+      - name: "Checkout dataset repository (no LFS)"
         uses: actions/checkout@v3
         with:
-          path: dataset
-          lfs: true
+          # Clone without LFS – the manifest of the data file is enough to calculate the hash
+          path: dataset_lite
 
       - name: Check if the packaged dataset is cached
         id: cache-dataset-restore
@@ -54,8 +54,14 @@ jobs:
         with:
           lookup-only: true
           path: package_out
-          key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset/metadata.ttl', 'dataset/data/*.tar.gz') }}
+          key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset_lite/metadata.ttl', 'dataset_lite/data/*.tar.gz') }}
       
+      - name: "Checkout dataset repository (with LFS)"
+        uses: actions/checkout@v3
+        with:
+          path: dataset
+          lfs: true
+
       - name: "Package the dataset"
         if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
         run: |
