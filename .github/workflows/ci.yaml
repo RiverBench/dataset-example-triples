@@ -57,6 +57,7 @@ jobs:
           key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset_lite/metadata.ttl', 'dataset_lite/data/*.tar.gz') }}
       
       - name: "Checkout dataset repository (with LFS)"
+        if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
         uses: actions/checkout@v3
         with:
           path: dataset
