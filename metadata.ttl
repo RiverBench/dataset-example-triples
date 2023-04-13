@@ -34,7 +34,8 @@
     rb:hasStreamElementCount 132432 ;
     rb:hasStreamElementType rb:triples ;
     rb:hasStreamElementSplit [
-        a rb:TimeStreamElementSplit
+        a rb:TimeStreamElementSplit ;
+        rdfs:comment "The stream is split into 1 second intervals. Each element is one observation."@en
     ] ;
     rb:conformsToRdf11 true ;
     rb:conformsToRdfStarDraft_20211217 true ;
