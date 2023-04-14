@@ -112,7 +112,7 @@ jobs:
       - name: Generate documentation
         run: |
           mkdir doc_out
-          ci-worker release/metadata.ttl dataset schema doc_out
+          ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
           tar -czf release/docs.tar.gz doc_out/docs
 
       - name: Delete previous latest release
