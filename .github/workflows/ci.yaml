@@ -159,7 +159,8 @@ jobs:
         id: cache-dataset-restore
         uses: actions/cache/restore@v3
         with:
-          path: '.'
+          path: README.md
+          fail-on-cache-miss: true
           key: ${{ needs.pre-release.outputs.readme-key }}
 
       - name: Commit changes
