@@ -103,6 +103,21 @@ jobs:
           ci-worker merge-metadata dataset package_out release latest
           mv package_out/*.gz release
 
+      - name: Fetch the schema repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'RiverBench/schema'
+          path: schema
+
+      - name: Generate documentation
+        run: |
+          mkdir doc_out
+          ci_worker release/metadata.ttl schema doc_out
+          # TODO: copy stuff from the dataset repo
+          mkdir doc_out/docs
+          mv doc_out/index.md doc_out/docs/index.md
+          tar -czf release/docs.tar.gz doc_out/docs
+
       - name: Delete previous latest release
         uses: dev-drprasad/delete-tag-and-release@v1.0
         with:
