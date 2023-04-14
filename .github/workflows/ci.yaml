@@ -84,6 +84,8 @@ jobs:
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/ci-worker:main
     permissions: write-all
+    outputs:
+      readme-key: cache-readme-${{ hashFiles('doc_out/README.md') }}
     steps:
       - name: Restore packaged dataset from cache
         id: cache-dataset-restore
@@ -115,6 +117,13 @@ jobs:
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
           tar -czf release/docs.tar.gz doc_out/docs
 
+      - name: Save README.md in cache
+        id: cache-readme-save
+        uses: actions/cache/save@v3
+        with:
+          path: doc_out/README.md
+          key: cache-readme-${{ hashFiles('doc_out/README.md') }}
+
       - name: Delete previous latest release
         uses: dev-drprasad/delete-tag-and-release@v1.0
         with:
@@ -131,6 +140,32 @@ jobs:
           name: "Latest dataset package"
           artifacts: 'release/*'
           generateReleaseNotes: true
+
+  update-readme:
+    needs: pre-release
+    name: "Update README.md"
+    runs-on: "ubuntu-latest"
+    permissions: write-all
+    steps:
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+
+      - name: Restore README.md from cache
+        id: cache-dataset-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: '.'
+          key: ${{ needs.pre-release.outputs.readme-key }}
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Automatic update of README.md'
+          add: 'README.md'
+          push: true
+      
+
+      
 
   # TODO: add tagged releases
 
