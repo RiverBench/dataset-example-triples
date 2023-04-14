@@ -115,18 +115,20 @@ jobs:
         run: |
           mkdir doc_out
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
+          mkdir readme
+          mv doc_out/README.md readme/README.md
           tar -czf release/docs.tar.gz doc_out/docs
 
       - name: Generate README cache key
         id: cache-readme-key
         run: |
-          echo "cache-key=cache-readme-${{ hashFiles('doc_out/README.md') }}" >> "$GITHUB_OUTPUT"
+          echo "cache-key=cache-readme-${{ hashFiles('readme/README.md') }}" >> "$GITHUB_OUTPUT"
 
       - name: Save README.md in cache
         id: cache-readme-save
         uses: actions/cache/save@v3
         with:
-          path: doc_out/README.md
+          path: readme
           key: ${{ steps.cache-readme-key.outputs.cache-key }}
 
       - name: Delete previous latest release
@@ -159,9 +161,13 @@ jobs:
         id: cache-dataset-restore
         uses: actions/cache/restore@v3
         with:
-          path: README.md
+          path: readme
           fail-on-cache-miss: true
           key: ${{ needs.pre-release.outputs.readme-key }}
+
+      - name: Update README.md
+        run: |
+          mv readme/README.md README.md
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
