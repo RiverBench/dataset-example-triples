@@ -13,6 +13,7 @@ jobs:
 
   package:
     needs: validate
+    if: always() && (needs.validate.result == 'success' || needs.validate.result == 'skipped')
     name: "Package dataset"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/ci-worker:main
