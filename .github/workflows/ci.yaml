@@ -13,7 +13,7 @@ jobs:
   validate:
     name: "Validate dataset"
     runs-on: "ubuntu-latest"
-    container: ghcr.io/riverbench/dataset-ci-worker:main
+    container: ghcr.io/riverbench/ci-worker:main
 
     steps:
       - name: "Checkout dataset repository"
@@ -35,7 +35,7 @@ jobs:
     needs: validate
     name: "Package dataset"
     runs-on: "ubuntu-latest"
-    container: ghcr.io/riverbench/dataset-ci-worker:main
+    container: ghcr.io/riverbench/ci-worker:main
     # Force only one package job to execute at a time, to avoid duplicating work.
     concurrency: package-dataset
     outputs:
@@ -82,7 +82,7 @@ jobs:
     needs: package
     name: "Make a pre-release"
     runs-on: "ubuntu-latest"
-    container: ghcr.io/riverbench/dataset-ci-worker:main
+    container: ghcr.io/riverbench/ci-worker:main
     permissions: write-all
     steps:
       - name: Restore packaged dataset from cache
