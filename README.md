@@ -8,22 +8,22 @@
 -- to them from the description in the metadata.ttl file.
 --
 -->
-[![.github/workflows/ci.yaml](https://github.com/RiverBench/dataset-example-triples/actions/workflows/ci.yaml/badge.svg?event=push)](https://github.com/RiverBench/dataset-example-triples/actions/workflows/ci.yaml)
+[![.github/workflows/release.yaml](https://github.com/RiverBench/dataset-example-triples/actions/workflows/release.yaml/badge.svg?event=push)](https://github.com/RiverBench/dataset-example-triples/actions/workflows/release.yaml)
 
 
 # Example triples dataset
 
 This is an example dataset that is a triple stream.
 
-*This README is a snapshot of documentation for the latest version of the dataset.
-Full documentation for all versions can be found [on the website](https://riverbench.github.io/dataset/example-triples/latest).*
+*This README is a snapshot of documentation for the latest development version of the dataset.
+Full documentation for all versions can be found [on the website](https://riverbench.github.io/dataset/example-triples/dev).*
 
 
 ## Dataset information
 
 - **Title<sup>[?](## "A name given to the resource.")</sup>**: Example triples dataset
 - **Identifier<sup>[?](## "An unambiguous reference to the resource within a given context.")</sup>**: example-triples
-- **Has version<sup>[?](## "Version tag of an artifact")</sup>**: latest
+- **Has version<sup>[?](## "Version tag of an artifact")</sup>**: dev
 - **Theme<sup>[?](## "A main category of the resource. A resource can have multiple themes.")</sup>**: Abstract ([rbt:abstract](https://riverbench.github.io/schema/theme#abstract))
 - **Creator<sup>[?](## "An entity responsible for making the resource.")</sup>**: 
   - **Name<sup>[?](## "A name for some thing.")</sup>**: Piotr Sowiński
@@ -32,7 +32,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **License<sup>[?](## "A legal document giving official permission to do something with the resource.")</sup>**: CC0-1.0 ([http://spdx.org/licenses/CC0-1.0](http://spdx.org/licenses/CC0-1.0))
 - **Date Issued<sup>[?](## "Date of formal issuance of the resource.")</sup>**: 2023-03-13
 - **Date Modified<sup>[?](## "Date on which the resource was changed.")</sup>**: 2023-03-13
-- **Landing page<sup>[?](## "A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest
+- **Landing page<sup>[?](## "A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev
 
 ## Technical metadata
 
@@ -62,7 +62,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Byte size<sup>[?](## "The size of a distribution in bytes.")</sup>**: 9578677
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: application/n-triples
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/flat_100K.nt.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/flat_100K.nt.gz
 
 ### 100K elements triple stream distribution
 
@@ -76,7 +76,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: text/turtle
 - **Packaging format<sup>[?](## "The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.")</sup>**: application/tar
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/stream_100K.tar.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/stream_100K.tar.gz
 
 ### 10K elements flat distribution
 
@@ -89,7 +89,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Byte size<sup>[?](## "The size of a distribution in bytes.")</sup>**: 961030
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: application/n-triples
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/flat_10K.nt.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/flat_10K.nt.gz
 
 ### 10K elements triple stream distribution
 
@@ -103,7 +103,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: text/turtle
 - **Packaging format<sup>[?](## "The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.")</sup>**: application/tar
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/stream_10K.tar.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/stream_10K.tar.gz
 
 ### Full flat distribution
 
@@ -116,7 +116,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Byte size<sup>[?](## "The size of a distribution in bytes.")</sup>**: 12675847
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: application/n-triples
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/flat_full.nt.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/flat_full.nt.gz
 
 ### Full triple stream distribution
 
@@ -130,5 +130,5 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **Media type<sup>[?](## "The media type of the distribution as defined by IANA")</sup>**: text/turtle
 - **Packaging format<sup>[?](## "The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.")</sup>**: application/tar
 - **Compression format<sup>[?](## "The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.")</sup>**: application/gzip
-- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/latest/stream_full.tar.gz
+- **Download URL<sup>[?](## "The URL of the downloadable file in a given format. E.g. CSV file or RDF file. The format is indicated by the distribution's dct:format and/or dcat:mediaType.")</sup>**: https://riverbench.github.io/dataset/example-triples/dev/stream_full.tar.gz
 
