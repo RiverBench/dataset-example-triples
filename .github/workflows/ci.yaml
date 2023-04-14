@@ -1,11 +1,9 @@
 on:
-  # TODO: add tag trigger
   push:
     branches:
       - main
-  # pull_request:
-  #   branches:
-  #     - main
+    tags:
+      - "v*"
   workflow_dispatch: {}
 
 jobs:
@@ -78,8 +76,8 @@ jobs:
           key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
 
   pre-release:
-    # TODO: add if
     needs: package
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: "Make a pre-release"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/ci-worker:main
@@ -138,8 +136,57 @@ jobs:
           artifacts: 'release/*'
           generateReleaseNotes: true
 
+  tagged-release:
+    needs: package
+    if: startsWith(github.ref, 'refs/tags/v')
+    name: "Make a tagged release"
+    runs-on: "ubuntu-latest"
+    container: ghcr.io/riverbench/ci-worker:main
+    permissions: write-all
+    steps:
+      - name: Restore packaged dataset from cache
+        id: cache-dataset-restore
+        uses: actions/cache/restore@v3
+        with:
+          path: package_out
+          key: ${{ needs.package.outputs.package-key }}
+
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+        with:
+          path: dataset
+
+      - name: Merge metadata and packages
+        run: |
+          mkdir release
+          ci-worker merge-metadata dataset package_out release "${GITHUB_REF_NAME#v}"
+          mv package_out/*.gz release
+
+      - name: Fetch the schema repository
+        uses: actions/checkout@v3
+        with:
+          repository: 'RiverBench/schema'
+          path: schema
+
+      - name: Generate documentation
+        run: |
+          mkdir doc_out
+          ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
+          tar -czf release/docs.tar.gz doc_out/docs
+
+      - name: Upload files for the release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          prerelease: false
+          draft: false
+          tag: "${{ env.GITHUB_REF_NAME }}"
+          name: "Dataset release ${{ env.GITHUB_REF_NAME }}"
+          artifacts: 'release/*'
+          generateReleaseNotes: true
+
   update-readme:
     needs: pre-release
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     name: "Update README.md"
     runs-on: "ubuntu-latest"
     permissions: write-all
@@ -151,10 +198,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: readme
-
-      - name: Update README.md ???
-        run: |
-          ls -lr
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
