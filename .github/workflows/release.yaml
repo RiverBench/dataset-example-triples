@@ -7,27 +7,9 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  # todo: move to a separate borkflow
   validate:
-    name: "Validate dataset"
-    runs-on: "ubuntu-latest"
-    container: ghcr.io/riverbench/ci-worker:main
-
-    steps:
-      - name: "Checkout dataset repository"
-        uses: actions/checkout@v3
-        with:
-          path: dataset
-          lfs: true
-
-      - name: "Checkout schema repository"
-        uses: actions/checkout@v3
-        with:
-          repository: 'RiverBench/schema'
-          path: schema
-
-      - name: "Validate the dataset"
-        run: ci-worker validate-repo dataset schema/src/metadata_shacl.ttl
+    if: startsWith(github.ref, 'refs/tags/v') != true
+    uses: ./.github/workflows/validate.yaml
 
   package:
     needs: validate
@@ -98,7 +80,7 @@ jobs:
       - name: Merge metadata and packages
         run: |
           mkdir release
-          ci-worker merge-metadata dataset package_out release latest
+          ci-worker merge-metadata dataset package_out release dev
           mv package_out/*.gz release
 
       - name: Fetch the schema repository
@@ -119,10 +101,10 @@ jobs:
           name: readme
           path: doc_out/README.md
 
-      - name: Delete previous latest release
+      - name: Delete previous dev release
         uses: dev-drprasad/delete-tag-and-release@v1.0
         with:
-          tag_name: latest
+          tag_name: dev
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload files for the release
@@ -130,9 +112,9 @@ jobs:
         with:
           prerelease: true
           draft: false
-          makeLatest: true
-          tag: "latest"
-          name: "Latest dataset package"
+          makeLatest: false
+          tag: "dev"
+          name: "Development pre-release"
           artifacts: 'release/*'
           generateReleaseNotes: true
 
@@ -179,9 +161,9 @@ jobs:
         with:
           prerelease: false
           draft: false
-          makeLatest: false
+          makeLatest: true
           tag: "${{ env.GITHUB_REF_NAME }}"
-          name: "${{ format('Dataset release {0}', env.GITHUB_REF_NAME) }}"
+          name: "${{ env.GITHUB_REF_NAME }}"
           artifacts: 'release/*'
           generateReleaseNotes: true
 
@@ -206,10 +188,4 @@ jobs:
           message: 'Automatic update of README.md'
           add: 'README.md'
           push: true
-      
-
-      
-
-  # TODO: add tagged releases
-
         
