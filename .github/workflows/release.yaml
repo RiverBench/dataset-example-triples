@@ -94,7 +94,7 @@ jobs:
         run: |
           mkdir doc_out
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
-          tar -czf release/docs.tar.gz doc_out/docs
+          tar -czf release/docs.tar.gz -C doc_out/docs doc_out/docs
 
       - name: Upload README.md artifact
         uses: actions/upload-artifact@v3
@@ -118,6 +118,19 @@ jobs:
           name: "Development pre-release"
           artifacts: 'release/*'
           generateReleaseNotes: true
+
+  trigger-doc-update-dev:
+    needs: pre-release
+    name: "Trigger documentation update (dev)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Trigger repository_dispatch"
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_DOC_REPO_HOOKS }}
+          repository: RiverBench/riverbench.github.io
+          event-type: dataset-doc-update
+          client-payload: '{ "repo": "${{ github.repository }}", "tag": "dev" }'
 
   update-readme:
     needs: pre-release
@@ -190,7 +203,7 @@ jobs:
         run: |
           mkdir doc_out
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
-          tar -czf release/docs.tar.gz doc_out/docs
+          tar -czf release/docs.tar.gz -C doc_out/docs doc_out/docs
 
       - name: Upload files for the release
         uses: ncipollo/release-action@v1.12.0
@@ -202,4 +215,16 @@ jobs:
           name: "${{ env.GITHUB_REF_NAME }}"
           artifacts: 'release/*'
           generateReleaseNotes: true
-        
+
+  trigger-doc-update-tagged:
+    needs: pre-release
+    name: "Trigger documentation update (tagged rel)"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Trigger repository_dispatch"
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_DOC_REPO_HOOKS }}
+          repository: RiverBench/riverbench.github.io
+          event-type: dataset-doc-update
+          client-payload: '{ "repo": "${{ github.repository }}", "tag": "${{ env.GITHUB_REF_NAME }}" }'
