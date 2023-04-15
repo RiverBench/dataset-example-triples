@@ -119,6 +119,20 @@ jobs:
           artifacts: 'release/*'
           generateReleaseNotes: true
 
+  trigger-dataset-update:
+    needs: pre-release
+    name: "Trigger dataset update in the main repository"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Trigger repository_dispatch"
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_MAIN_REPO_HOOKS }}
+          repository: RiverBench/RiverBench
+          event-type: dataset-update
+          client-payload: '{"repo": "${{ github.repository }}" }'
+        
+
   tagged-release:
     needs: package
     if: startsWith(github.ref, 'refs/tags/v')
