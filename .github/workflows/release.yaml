@@ -229,4 +229,4 @@ jobs:
           token: ${{ secrets.PAT_DOC_REPO_HOOKS }}
           repository: RiverBench/riverbench.github.io
           event-type: dataset-doc-update
-          client-payload: '{ "repo": "${{ github.repository }}", "tag": "${{ env.GITHUB_REF_NAME }}" }'
+          client-payload: '{ "repo": "${{ github.repository }}", "tag": "${{ github.ref_name }}" }'
