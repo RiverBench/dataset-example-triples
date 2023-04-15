@@ -94,7 +94,7 @@ jobs:
         run: |
           mkdir doc_out
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
-          tar -czf release/docs.tar.gz -C doc_out/docs doc_out/docs
+          tar -czf release/docs.tar.gz -C doc_out/docs .
 
       - name: Upload README.md artifact
         uses: actions/upload-artifact@v3
@@ -203,7 +203,7 @@ jobs:
         run: |
           mkdir doc_out
           ci-worker dataset-doc-gen release/metadata.ttl dataset schema doc_out
-          tar -czf release/docs.tar.gz -C doc_out/docs doc_out/docs
+          tar -czf release/docs.tar.gz -C doc_out/docs .
 
       - name: Upload files for the release
         uses: ncipollo/release-action@v1.12.0
