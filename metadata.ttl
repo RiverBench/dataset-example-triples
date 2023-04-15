@@ -1,4 +1,4 @@
-@prefix : <https://riverbench.github.io/dataset/example#> .
+@prefix : <https://riverbench.github.io/temp#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -8,7 +8,11 @@
 @prefix spdx: <http://spdx.org/rdf/terms#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:exampleDataset
+# This file contains the manually written metadata for the dataset.
+# The URI of the dataset here is temporary. Real URIs are assigned
+# automatically in CI.
+
+:dataset
     a rb:Dataset, dcat:Dataset ;
     dcterms:conformsTo <https://riverbench.github.io/schema/dataset/1.0.0> ;
     dcterms:identifier "example-triples" ;
