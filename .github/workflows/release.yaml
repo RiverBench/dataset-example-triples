@@ -217,7 +217,7 @@ jobs:
           generateReleaseNotes: true
 
   trigger-doc-update-tagged:
-    needs: pre-release
+    needs: tagged-release
     name: "Trigger documentation update (tagged rel)"
     runs-on: "ubuntu-latest"
     steps:
