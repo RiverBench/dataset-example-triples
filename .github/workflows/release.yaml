@@ -119,8 +119,29 @@ jobs:
           artifacts: 'release/*'
           generateReleaseNotes: true
 
-  trigger-dataset-update:
+  update-readme:
     needs: pre-release
+    name: "Update README.md"
+    runs-on: "ubuntu-latest"
+    permissions: write-all
+    steps:
+      - name: "Checkout dataset repository"
+        uses: actions/checkout@v3
+
+      - name: Restore README.md
+        uses: actions/download-artifact@v3
+        with:
+          name: readme
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Automatic update of README.md'
+          add: 'README.md'
+          push: true
+
+  trigger-dataset-update:
+    needs: update-readme
     name: "Trigger dataset update in the main repository"
     runs-on: "ubuntu-latest"
     steps:
@@ -131,7 +152,6 @@ jobs:
           repository: RiverBench/RiverBench
           event-type: dataset-update
           client-payload: '{"repo": "${{ github.repository }}" }'
-        
 
   tagged-release:
     needs: package
@@ -181,26 +201,4 @@ jobs:
           name: "${{ env.GITHUB_REF_NAME }}"
           artifacts: 'release/*'
           generateReleaseNotes: true
-
-  update-readme:
-    needs: pre-release
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    name: "Update README.md"
-    runs-on: "ubuntu-latest"
-    permissions: write-all
-    steps:
-      - name: "Checkout dataset repository"
-        uses: actions/checkout@v3
-
-      - name: Restore README.md
-        uses: actions/download-artifact@v3
-        with:
-          name: readme
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: 'Automatic update of README.md'
-          add: 'README.md'
-          push: true
         
