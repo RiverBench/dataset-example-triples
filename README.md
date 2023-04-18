@@ -31,7 +31,7 @@ Full documentation for all versions can be found [on the website](https://riverb
     - **<abbr title="A homepage for some thing.">Homepage</abbr>**: [https://github.com/Ostrzyciel](https://github.com/Ostrzyciel)
 - **<abbr title="A legal document giving official permission to do something with the resource.">License</abbr>**: CC0-1.0 ([http://spdx.org/licenses/CC0-1.0](http://spdx.org/licenses/CC0-1.0))
 - **<abbr title="Date of formal issuance of the resource.">Date Issued</abbr>**: 2023-03-13
-- **<abbr title="Date on which the resource was changed.">Date Modified</abbr>**: 2023-03-13
+- **<abbr title="Date on which the resource was changed.">Date Modified</abbr>**: 2023-04-18
 - **<abbr title="A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information.">Landing page</abbr>**: [example-triples (dev)](https://riverbench.github.io/datasets/example-triples/dev)
 
 ## Technical metadata
@@ -72,7 +72,7 @@ Full documentation for all versions can be found [on the website](https://riverb
     - <abbr title="A partial distribution, including only a subset of the data in the dataset. The rb:hasStreamElementCount property indicates the length of this distribution.">Partial distribution</abbr> ([rb:partialDistribution](https://riverbench.github.io/schema/dataset#partialDistribution))
     - <abbr title="The dataset is distributed as a stream of RDF triples.">Triple stream distribution</abbr> ([rb:tripleStreamDistribution](https://riverbench.github.io/schema/dataset#tripleStreamDistribution))
 - **<abbr title="Number of elements in the stream">Has stream element count</abbr>**: 100000
-- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 12561073
+- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 12561248
 - **<abbr title="The media type of the distribution as defined by IANA">Media type</abbr>**: text/turtle
 - **<abbr title="The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.">Packaging format</abbr>**: application/tar
 - **<abbr title="The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.">Compression format</abbr>**: application/gzip
@@ -99,7 +99,7 @@ Full documentation for all versions can be found [on the website](https://riverb
     - <abbr title="A partial distribution, including only a subset of the data in the dataset. The rb:hasStreamElementCount property indicates the length of this distribution.">Partial distribution</abbr> ([rb:partialDistribution](https://riverbench.github.io/schema/dataset#partialDistribution))
     - <abbr title="The dataset is distributed as a stream of RDF triples.">Triple stream distribution</abbr> ([rb:tripleStreamDistribution](https://riverbench.github.io/schema/dataset#tripleStreamDistribution))
 - **<abbr title="Number of elements in the stream">Has stream element count</abbr>**: 10000
-- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 1259435
+- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 1259367
 - **<abbr title="The media type of the distribution as defined by IANA">Media type</abbr>**: text/turtle
 - **<abbr title="The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.">Packaging format</abbr>**: application/tar
 - **<abbr title="The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.">Compression format</abbr>**: application/gzip
@@ -126,7 +126,7 @@ Full documentation for all versions can be found [on the website](https://riverb
     - <abbr title="A full distribution, including all data in the dataset.">Full distribution</abbr> ([rb:fullDistribution](https://riverbench.github.io/schema/dataset#fullDistribution))
     - <abbr title="The dataset is distributed as a stream of RDF triples.">Triple stream distribution</abbr> ([rb:tripleStreamDistribution](https://riverbench.github.io/schema/dataset#tripleStreamDistribution))
 - **<abbr title="Number of elements in the stream">Has stream element count</abbr>**: 132432
-- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 16625234
+- **<abbr title="The size of a distribution in bytes.">Byte size</abbr>**: 16625699
 - **<abbr title="The media type of the distribution as defined by IANA">Media type</abbr>**: text/turtle
 - **<abbr title="The package format of the distribution in which one or more data files are grouped together, e.g. to enable a set of related files to be downloaded together.">Packaging format</abbr>**: application/tar
 - **<abbr title="The compression format of the distribution in which the data is contained in a compressed form, e.g. to reduce the size of the downloadable file.">Compression format</abbr>**: application/gzip
