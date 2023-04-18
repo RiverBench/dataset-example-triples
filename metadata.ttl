@@ -18,7 +18,7 @@
     dcterms:identifier "example-triples" ;
 
     dcterms:title "Example triples dataset"@en ;
-    dcterms:description "This is an example dataset that is a triple stream."@en ;
+    dcterms:description "This is an example dataset that is a triple stream. Each element in the stream is an RDF graph. The dataset is entirely synthetic and was generated for demonstration purposes."@en ;
     dcterms:issued "2023-03-13"^^xsd:date ;
     dcterms:modified "2023-04-18"^^xsd:date ;
 
