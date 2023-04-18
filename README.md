@@ -19,12 +19,12 @@ This is an example dataset that is a triple stream.
 Full documentation for all versions can be found [on the website](https://riverbench.github.io/datasets/example-triples/dev).*
 
 
-## Dataset information
+## General information
 
 - **<abbr title="A name given to the resource.">Title</abbr>**: Example triples dataset
 - **<abbr title="An unambiguous reference to the resource within a given context.">Identifier</abbr>**: example-triples
 - **<abbr title="Version tag of an artifact">Has version</abbr>**: dev
-- **<abbr title="A main category of the resource. A resource can have multiple themes.">Theme</abbr>**: Abstract ([rbt:abstract](https://riverbench.github.io/schema/theme#abstract))
+- **<abbr title="A main category of the resource. A resource can have multiple themes.">Theme</abbr>**: <abbr title="Datasets with abstract information (unrelated to the real world).">Abstract data</abbr> ([rbt:abstract](https://riverbench.github.io/schema/theme#abstract))
 - **<abbr title="An entity responsible for making the resource.">Creator</abbr>**: 
     - **<abbr title="A name for some thing.">Name</abbr>**: Piotr Sowiński
     - **<abbr title="A short informal nickname characterising an agent (includes login identifiers, IRC and other chat nicknames).">Nickname</abbr>**: Ostrzyciel
@@ -32,7 +32,7 @@ Full documentation for all versions can be found [on the website](https://riverb
 - **<abbr title="A legal document giving official permission to do something with the resource.">License</abbr>**: CC0-1.0 ([http://spdx.org/licenses/CC0-1.0](http://spdx.org/licenses/CC0-1.0))
 - **<abbr title="Date of formal issuance of the resource.">Date Issued</abbr>**: 2023-03-13
 - **<abbr title="Date on which the resource was changed.">Date Modified</abbr>**: 2023-03-13
-- **<abbr title="A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information.">Landing page</abbr>**: [https://riverbench.github.io/datasets/example-triples/dev](https://riverbench.github.io/datasets/example-triples/dev)
+- **<abbr title="A Web page that can be navigated to in a Web browser to gain access to the catalog, a dataset, its distributions and/or additional information.">Landing page</abbr>**: [example-triples (dev)](https://riverbench.github.io/datasets/example-triples/dev)
 
 ## Technical metadata
 
