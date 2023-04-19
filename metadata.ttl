@@ -14,7 +14,7 @@
 
 :dataset
     a rb:Dataset, dcat:Dataset ;
-    dcterms:conformsTo <https://riverbench.github.io/schema/dataset/1.0.0> ;
+    dcterms:conformsTo <https://riverbench.github.io/schema/dataset> ;
     dcterms:identifier "example-triples" ;
 
     dcterms:title "Example triples dataset"@en ;
