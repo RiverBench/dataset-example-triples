@@ -17,7 +17,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: dataset
-          lfs: true
+
+      - name: "Fetch source release info"
+        run: |
+          wget -O release.json "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/source"
 
       - name: "Checkout schema repository"
         uses: actions/checkout@v3
@@ -26,4 +29,4 @@ jobs:
           path: schema
 
       - name: "Validate the dataset"
-        run: ci-worker validate-repo dataset schema/src/dataset-shacl.ttl
+        run: ci-worker validate-repo dataset release.json schema/src/dataset-shacl.ttl

@@ -22,11 +22,14 @@ jobs:
       package-key: ${{ steps.cache-dataset-restore.outputs.cache-primary-key }}
 
     steps:
-      - name: "Checkout dataset repository (no LFS)"
+      - name: "Checkout dataset repository"
         uses: actions/checkout@v3
         with:
-          # Clone without LFS – the manifest of the data file is enough to calculate the hash
-          path: dataset_lite
+          path: dataset
+
+      - name: "Fetch source release info"
+        run: |
+          wget -O release.json "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/source"
 
       - name: Check if the packaged dataset is cached
         id: cache-dataset-restore
@@ -34,20 +37,13 @@ jobs:
         with:
           lookup-only: true
           path: package_out
-          key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset_lite/metadata.ttl', 'dataset_lite/data/*.tar.gz') }}
-      
-      - name: "Checkout dataset repository (with LFS)"
-        if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
-        uses: actions/checkout@v3
-        with:
-          path: dataset
-          lfs: true
+          key: cache-package-${{ hashFiles('/app/ci-worker-assembly.jar', 'dataset/metadata.ttl', 'release.json') }}
 
       - name: "Package the dataset"
         if: steps.cache-dataset-restore.outputs.cache-hit != 'true'
         run: |
           mkdir package_out
-          ci-worker package dataset package_out
+          ci-worker package dataset release.json package_out
 
       - name: Save the packaged dataset in cache
         id: cache-dataset-save
