@@ -59,7 +59,7 @@ jobs:
 
   pre-release:
     needs: package
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     name: "Make a pre-release"
     runs-on: "ubuntu-latest"
     container: ghcr.io/riverbench/ci-worker:main
