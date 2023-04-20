@@ -1,9 +1,9 @@
-@prefix : <https://riverbench.github.io/temp#> .
+@prefix : <https://w3id.org/riverbench/temp#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix rb: <https://riverbench.github.io/schema/metadata#> .
-@prefix rbt: <https://riverbench.github.io/schema/theme#> .
+@prefix rb: <https://w3id.org/riverbench/schema/metadata#> .
+@prefix rbt: <https://w3id.org/riverbench/schema/theme#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix spdx: <http://spdx.org/rdf/terms#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -14,7 +14,7 @@
 
 :dataset
     a rb:Dataset, dcat:Dataset ;
-    dcterms:conformsTo <https://riverbench.github.io/schema/metadata> ;
+    dcterms:conformsTo <https://w3id.org/riverbench/schema/metadata> ;
     dcterms:identifier "example-triples" ;
 
     dcterms:title "Example triples dataset"@en ;
