@@ -4,29 +4,7 @@ on:
     branches:
       - main
   workflow_dispatch: {}
-  workflow_call: {}
 
 jobs:
   validate:
-    name: "Validate dataset"
-    runs-on: "ubuntu-latest"
-    container: ghcr.io/riverbench/ci-worker:main
-
-    steps:
-      - name: "Checkout dataset repository"
-        uses: actions/checkout@v3
-        with:
-          path: dataset
-
-      - name: "Fetch source release info"
-        run: |
-          wget -O release.json "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/source"
-
-      - name: "Checkout schema repository"
-        uses: actions/checkout@v3
-        with:
-          repository: 'RiverBench/schema'
-          path: schema
-
-      - name: "Validate the dataset"
-        run: ci-worker validate-repo dataset release.json schema/src/dataset-shacl.ttl
+    uses: RiverBench/ci-workflows/.github/workflows/dataset-validate.yaml
