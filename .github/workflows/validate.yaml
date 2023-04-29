@@ -8,3 +8,4 @@ on:
 jobs:
   validate:
     uses: RiverBench/ci-workflows/.github/workflows/dataset-validate.yaml@main
+    secrets: inherit

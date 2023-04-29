@@ -10,6 +10,9 @@ on:
 jobs:
   validate:
     uses: RiverBench/ci-workflows/.github/workflows/dataset-validate.yaml@main
+    secrets: inherit
 
   release:
     uses: RiverBench/ci-workflows/.github/workflows/dataset-release.yaml@main
+    permissions: write-all
+    secrets: inherit
