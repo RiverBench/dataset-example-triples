@@ -14,5 +14,6 @@ jobs:
 
   release:
     uses: RiverBench/ci-workflows/.github/workflows/dataset-release.yaml@main
+    needs: validate
     permissions: write-all
     secrets: inherit
