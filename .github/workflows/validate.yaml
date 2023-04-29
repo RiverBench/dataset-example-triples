@@ -7,4 +7,4 @@ on:
 
 jobs:
   validate:
-    uses: RiverBench/ci-workflows/.github/workflows/dataset-validate.yaml
+    uses: RiverBench/ci-workflows/.github/workflows/dataset-validate.yaml@main
